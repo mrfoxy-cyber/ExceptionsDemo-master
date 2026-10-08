@@ -13,4 +13,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="ExceptionDemo.Tests\**\*.cs" />
+  </ItemGroup>
+
 </Project>
