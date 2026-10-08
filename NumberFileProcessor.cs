@@ -5,7 +5,21 @@ namespace ExceptionsDemo;
 
 public static class NumberFileProcessor
 {
+    private const double Dividend = 100.0;
+
     public static double ProcessFile(string fileName)
+    {
+        ValidateFileName(fileName);
+
+        string firstLine = ReadFirstLine(fileName);
+        int divisor = ParseWholeNumber(firstLine);
+
+        EnsureDivisorIsNotZero(divisor);
+
+        return CalculateResult(divisor);
+    }
+
+    private static void ValidateFileName(string fileName)
     {
         if (string.IsNullOrWhiteSpace(fileName))
         {
@@ -13,22 +27,36 @@ public static class NumberFileProcessor
                 "Filnamn får inte vara tomt eller null.",
                 nameof(fileName));
         }
+    }
 
+    private static string ReadFirstLine(string fileName)
+    {
         using var reader = new StreamReader(fileName);
-        string? line = reader.ReadLine();
+        string? firstLine = reader.ReadLine();
 
-        if (line is null)
+        if (firstLine is null)
         {
             throw new InvalidOperationException("Filen är tom.");
         }
 
-        int number = int.Parse(line);
+        return firstLine;
+    }
 
-        if (number == 0)
+    private static int ParseWholeNumber(string text)
+    {
+        return int.Parse(text);
+    }
+
+    private static void EnsureDivisorIsNotZero(int divisor)
+    {
+        if (divisor == 0)
         {
             throw new DivideByZeroException("Kan inte dividera med noll.");
         }
+    }
 
-        return 100.0 / number;
+    private static double CalculateResult(int divisor)
+    {
+        return Dividend / divisor;
     }
 }
