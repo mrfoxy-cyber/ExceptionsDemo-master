@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../ExceptionDemo.Tests/ExceptionDemo.Tests.csproj" Id="83fe7b8e-a3f1-4f2f-bb72-622992023b81" />
   <Project Path="ExceptionsDemo.csproj" />
 </Solution>
