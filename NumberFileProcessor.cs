@@ -31,7 +31,12 @@ public static class NumberFileProcessor
 
     private static string ReadFirstLine(string fileName)
     {
+        // StreamReader can automatically throw FileNotFoundException,
+        // DirectoryNotFoundException, UnauthorizedAccessException,
+        // IOException, or PathTooLongException when it opens the file.
         using var reader = new StreamReader(fileName);
+
+        // ReadLine can automatically throw IOException if reading fails.
         string? firstLine = reader.ReadLine();
 
         if (firstLine is null)
@@ -44,6 +49,9 @@ public static class NumberFileProcessor
 
     private static int ParseWholeNumber(string text)
     {
+        // int.Parse automatically throws FormatException when the text is
+        // not a whole number, or OverflowException when it is outside
+        // the range supported by Int32.
         return int.Parse(text);
     }
 

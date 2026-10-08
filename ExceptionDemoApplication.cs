@@ -7,8 +7,11 @@ public static class ExceptionDemoApplication
 {
     public static void Run(string fileName, TextWriter output)
     {
+        // ThrowIfNull throws ArgumentNullException when output is null.
         ArgumentNullException.ThrowIfNull(output);
 
+        // WriteLine automatically throws ObjectDisposedException when the
+        // supplied output writer has already been disposed.
         output.WriteLine("=== Start av programmet ===");
 
         try
