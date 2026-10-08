@@ -20,6 +20,12 @@ The application shall read a whole number from a text file, divide 100 by that n
 | FR-10 | A blank or null file name shall be rejected with an argument error. | Must |
 | FR-11 | The file reader shall be closed whether processing succeeds or fails. | Must |
 | FR-12 | The console application shall finish normally after displaying either a result or an error message. | Should |
+| FR-13 | A file path inside a missing directory shall be reported as a directory-not-found error. | Must |
+| FR-14 | A path that cannot be read because access is denied shall be reported as an unauthorized-access error. | Must |
+| FR-15 | A file that cannot be opened because it is exclusively locked shall be reported as an input/output error. | Must |
+| FR-16 | A null output writer shall be rejected with an argument-null error. | Must |
+| FR-17 | A disposed output writer shall be reported as an object-disposed error. | Must |
+| FR-18 | A path exceeding the supported length shall be reported as a path-too-long error. | Must |
 
 ## Business rules
 
@@ -51,6 +57,12 @@ The application shall read a whole number from a text file, divide 100 by that n
 | FR-10 | File name is blank | `ArgumentException` is reported |
 | FR-11 | Processing finishes or fails | The file can be reopened or deleted afterward |
 | FR-12 | Processing succeeds or fails | The console reports the outcome and finishes normally |
+| FR-13 | The parent directory does not exist | `DirectoryNotFoundException` is reported |
+| FR-14 | The supplied path is a directory rather than a readable file | `UnauthorizedAccessException` is reported |
+| FR-15 | Another process or stream holds an exclusive file lock | `IOException` is reported |
+| FR-16 | Output writer is null | `ArgumentNullException` is reported |
+| FR-17 | Output writer is already disposed | `ObjectDisposedException` is reported |
+| FR-18 | File path is longer than the platform supports | `PathTooLongException` is reported |
 
 ## Definition of done
 
